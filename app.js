@@ -13,6 +13,7 @@ const verifyToken = process.env.VERIFY_TOKEN;
 
 // Route for GET requests
 app.get('/', (req, res) => {
+  console.log("Peticion get recibida")
   const { 'hub.mode': mode, 'hub.challenge': challenge, 'hub.verify_token': token } = req.query;
 
   if (mode === 'subscribe' && token === verifyToken) {
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
 
 // Route for POST requests
 app.post('/', (req, res) => {
+  console.log("Peticion post reciibida")
   const timestamp = new Date().toISOString().replace('T', ' ').slice(0, 19);
   console.log(`\n\nWebhook received ${timestamp}\n`);
   console.log(JSON.stringify(req.body, null, 2));
